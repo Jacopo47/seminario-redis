@@ -117,28 +117,26 @@
             \item Cache;
             \item Message broker.
           \end{itemize}
-          Soprattutto per:
+
+          All'interno di:
           \begin{itemize}
             \item applicazioni Web;
             \item videogiochi;
             \item sistemi IoT.
           \end{itemize}
-
-          Tra i punti di forza vi sono \textbf{velocità} e la \textbf{facilità} con cui permette di gestire varie strutture dati.
-          %come stringhe, hash, liste, set e sorted set, bitmaps, hyperloglogs e indici geospaziali interrogabili tramite query dedicate.
       \end{frame}
 
       \begin{frame}{Perchè è uno dei più utilizzati}
-        Nel mondo di database NoSQL Redis risulta essere il secondo database NoSQL, alle spalle del colosso
-        MongoDB e in 7 posizione se vengono considerati anche i database relazionali.\footnote{\url{https://db-engines.com/en/ranking}} \\
-        Tra i suoi \textbf{punti di forza}:
+        Nel mondo NoSQL Redis risulta essere \textbf{secondo} solo a
+        MongoDB e 7° in classifica considerando i database relazionali.\footnote{\url{https://db-engines.com/en/ranking}} \\
+        I suoi \textbf{punti di forza}:
         \begin{itemize}
-          \item La struttura chiave-valore permette di gestire più strutture dati;
-          \item Il mantenimento dei dati in memoria ed il linguaggio in cui è scritto (C) lo rendono \textbf{estramente veloce}
+          \item La composizione chiave-valore permette di gestire più strutture dati;
+          \item Il mantenimento dei dati in memoria e il linguaggio in cui è scritto (C) lo rendono \textbf{estramente veloce}
                 e con tempi di latenza minimi;
-          \item Opzionalmente è permette di aggiungere \textbf{persistenza};
+          \item Opzionalmente permette di aggiungere \textbf{persistenza};
           \item Supporta le transazioni;
-          \item Fornisce funzionalità per eseguire \textbf{Lua scripting}, grazie ad un interprete built-in;
+          \item Fornisce funzionalità per eseguire \textbf{Lua scripting}, grazie a un interprete built-in;
           \item Offre \textbf{high avalability} e supporta la suddivisione dei dati all'interno di una rete \textbf{cluster} di macchine.
         \end{itemize}
 
@@ -161,7 +159,7 @@
           Installare Redis richiede qualche semplice passo se scaricato dalla pagina ufficiale\footnote{\url{https://redis.io/download}} oppure è possibile ottenere una versione completa su Debian o derivate lanciando il comando \textbf{\textit{sudo apt-get install redis-server}}.\\
 
           \begin{itemize}
-            \item Una volta installato, con il comando \textbf{\textit{redis-server}} viene avviata un'instanza sulla porta di defalut (6379)
+            \item Una volta installato, con il comando \textbf{\textit{redis-server}} si avvia un'instanza sulla porta di defalut (6379)
             \item È possibile collegarsi da terminale a questa instanza tramite il client \textbf{\textit{redis-cli}}
           \end{itemize}
 
@@ -184,7 +182,7 @@
 
           \bigskip
 
-          È possibile riottenere questi valore in differenti modi:
+          È possibile riottenere questi valori in differenti modi:
           \begin{itemize}
             \item HGET hfoo firstKey $\rightarrow$ "firstValue"
             \item HGETALL hfoo \\
@@ -192,7 +190,8 @@
                   2) "firstValue"
                   3) "secondKey"
                   4) "secondValue"
-            \item E' possile altrimenti ottenere tutte le chiavi o tutti i valori rispettivamente con i comandi \textbf{HKEYS} e  \textbf{HVALS}
+            \item \textbf{HKEYS} per ottenere tutte le chiavi
+            \item \textbf{HVALS} per ottenere tutti i valori
           \end{itemize}
 
         \end{frame}
@@ -212,7 +211,7 @@
   \end{lstlisting}
 
   Redis restituirà i valori in ordine "1", "2", "3". \\
-  È possibile verificarlo con l'istruzione \textbf{LRANGE}
+  Si può verificare con l'istruzione \textbf{LRANGE}
   \\
 
   \begin{lstlisting}[language=bash]
@@ -225,8 +224,8 @@
 \end{frame}
 
 \begin{frame}[fragile]{Set}
-  Nella gestione dei set in Redis si possiedono due comandi principali, \textbf{SADD} e \textbf{SMEMBERS},
-  rispettivamente per aggiungere valori ad una chiave e visualizzare i suoi elementi.
+  Due comandi principali, \textbf{SADD} e \textbf{SMEMBERS} \\
+  rispettivamente per aggiungere valori a una chiave e visualizzare i suoi elementi.
   \begin{lstlisting}[language=bash]
     > SADD myset 1 2 3
     ( integer ) 3
@@ -242,14 +241,13 @@
 \end{frame}
 
 \begin{frame}[fragile]{Sorted Set}
-  Questa struttura dati è gestita da Redis associando ad ogni valore uno \textit{score}.
+  Questa struttura dati è gestita da Redis associando a ogni valore uno \textbf{\textit{score}}, sul quale sarà eseguito l'ordinamento.
   \\
-  L'ordinamento viene infatti eseguito in base al valore di questo \textit{score}.\\
   Se per due valori coincide sarà eseguito sul valore lessicografico di quest'ultimi.
   \\
   In questo caso i comandi base sono:
   \begin{itemize}
-    \item \textbf{ZADD}: Prende in ingresso chiave, score e valore e li immaggazzina
+    \item \textbf{ZADD}: Prende in ingresso chiave, score, valore e li immaggazzina
     \item \textbf{ZRANGE}: Data una chiave, indice di partenza e di fine ne visualizza in ordine \textbf{crescente} i valori;
     \item \textbf{ZREVRANGE}: Data una chiave, indice di partenza e di fine ne visualizza in ordine \textbf{decrescente} i valori;
     \item \textbf{ZRANGEBYLEX}, \textbf{ZREVRANGEBYLEX}, \textbf{ZREMRANGEBYLEX} e \textbf{ZLEXCOUNT} per manipolarli in base al valore lessicografico.
@@ -284,7 +282,7 @@
       var redis = new Redis({
         port: 6379,
         host: "127.0.0.1",
-        family: 4,
+        family: 4
       });
 
       redis.set("foo", "bar");
@@ -361,27 +359,27 @@
 
     \subsection{Message Broker}
     \begin{frame}{Message Broker}
-      Redis offre la possibilità di gestire un \textbf{PUB/SUB messaging paradigm}. \\
-      Sarà possibile perciò client iscritti ad un determinato canale ed publisher che inviano messaggi.
-      Ogni emittente non è programmato per inviare ad uno specifico destinatario ma a tutti i subscriber di un determinato canale.
+      Redis implementa un \textbf{PUB/SUB messaging paradigm}. \\
+      Sarà possibile perciò avere client iscritti a un determinato canale e publisher che inviano messaggi. \\
+      Ogni messaggio avviene in broadcast!
       \begin{itemize}
-        \item Iscrizione con \textbf{SUBSRIBE foo}
+        \item Iscrizione con \textbf{SUBSCRIBE foo}
         \item Publicazione con \textbf{PUBLISH foo hello}
-        \item È possibile sottoscriversi utilizzando i pattern con \textbf{PSUBSCRIBE h?llo} \\
+        \item È possibile utilizzare pattern con \textbf{PSUBSCRIBE h?llo} \\
               Accetterà messaggi da hello, hallo, hxllo ma non da hllo.
       \end{itemize}
     \end{frame}
 
     \subsection{Database}
       \begin{frame}{Database}
-          Il mondo odierno necessita di analisi istantanee, i tradizionali tool necessitano ore, se non giorni! \\
+          Il mondo odierno necessita di \textbf{analisi istantanee}, i tradizionali tool richiedono ore, se non giorni! \\
           Redis offre: \\
           \begin{itemize}
             \item Analisi in tempo reale;
             \item Transazioni atomiche;
-            \item Supporto ad un elevatissimo numero di transazioni per secondo;
-            \item L'assenza di struttura e la semplicità nella modellazione dei dati lo rende un valido elemento come base di un backend web.
-            \item È possibile scalare le dimensioni dell'applicazione aggiungendo macchine in una rete cluster.
+            \item Supporto a un elevatissimo numero di transazioni per secondo;
+            \item Scalabilità data l'assenza di struttura e la semplicità nella modellazione dei dati;
+            \item Ulteriore scalabilità grazie alla gestione \textbf{\textit{cluster}} integrata.
           \end{itemize}
       \end{frame}
 
@@ -393,10 +391,10 @@
       \subsection{Clash of Clans}
         \begin{frame}{Clash of Clans}
           \begin{itemize}
-            \item Gioco real-time con milioni di utenti.
-            \item Il datastorage principale è MongoDB.
-            \item Utilizza Redis per il salvataggio e la progressione delle partite.
-            \item Nel dettaglio per l'aggiornamento delle risorse real-time, i punteggi e le classifiche.
+            \item Gioco real-time con milioni di utenti;
+            \item Il datastorage principale $\rightarrow$ MongoDB;
+            \item Utilizza Redis per il salvataggio e la progressione delle partite;
+            \item Nel dettaglio per l'aggiornamento delle risorse real-time, i punteggi e le classifiche;
           \end{itemize}
           \begin{center}
           \includegraphics[height=3.cm]{res/clash.png}
@@ -406,11 +404,11 @@
         \subsection{Waze}
           \begin{frame}{Waze}
             \begin{itemize}
-              \item Focus sul traffico real-time
-              \item Più di 10 milioni di utenti collegati nelle ore di punta
-              \item Database principale: MongoDB.
-              \item Utilizza Redis per gli aggiornamenti in tempo reale sul traffico, i veicoli e i passeggeri. \\
-                    I dati venono appoggiati al suo interno per poi periodicamente elaborati per \textbf{aggiustamenti} e \textbf{notifiche}.
+              \item Focus sul traffico real-time;
+              \item Più di \textbf{10 milioni} di utenti collegati nelle ore di punta;
+              \item Database principale $\rightarrow$ MongoDB;
+              \item Utilizza Redis per gli aggiornamenti in tempo reale su traffico, veicoli e i passeggeri; \\
+                    Appoggio temporaneo dei dati. Successivamente saranno elaborati per \textbf{aggiustamenti} e \textbf{notifiche}.
             \end{itemize}
 
 
